@@ -26,33 +26,10 @@ export default class News extends Component {
             loading: false,
             totalPages:0
         }
+        document.title=this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1) + "-NewsApp";
     }
 
-    handleNextClick=async()=>{
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=in&apiKey=e529c2fd0a9744c0921804d92e31c9f5&page=${this.state.page + 1}&pageSize=${this.state.totalArticles}`
-        this.setState({loading:true});
-        let data = await fetch(url);
-        let parsedData=await data.json();
-        this.setState({
-            page:this.state.page+1,
-            article:parsedData.articles,
-            loading:false
-        });
-    }
-
-    handlePreviousClick=async()=>{
-        let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=in&apiKey=e529c2fd0a9744c0921804d92e31c9f5&page=${this.state.page - 1}&pageSize=${this.state.totalArticles}`
-        this.setState({loading:true});
-        let data = await fetch(url);
-        let parsedData=await data.json();
-        this.setState({
-            page:this.state.page-1,
-            article:parsedData.articles,
-            loading:false
-        });
-    }
-    
-    async componentDidMount(){
+    async updateNews(){
         let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=e529c2fd0a9744c0921804d92e31c9f5&page=${this.state.page}&pageSize=${this.state.totalArticles}`
         this.setState({loading:true});
         let data = await fetch(url);
@@ -64,10 +41,24 @@ export default class News extends Component {
         });
     }
 
+    handleNextClick=async()=>{
+        await this.setState({page:this.state.page+1});
+        this.updateNews();
+    }
+
+    handlePreviousClick=async()=>{
+        await this.setState({page:this.state.page-1});
+        this.updateNews();
+    }
+    
+    async componentDidMount(){
+        this.updateNews();
+    }
+
     render() {
         return (
             <div className="container my-3">
-                <h1>{this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}</h1>
+                <h1 className="text-center">Top {this.props.category} headlines</h1>
                 {this.state.loading && <Spinner />}
                 <div className="row">
                 {!this.state.loading && this.state.article.map((element)=>{
