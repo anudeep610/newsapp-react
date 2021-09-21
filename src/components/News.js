@@ -9,11 +9,13 @@ const News = (props) => {
 
     const [article, setArticle] = useState([]);
     const [page, setPage] = useState(1);
+    // eslint-disable-next-line 
     const [totalArticlesPerPage, setTotalArticlesPerPage] = useState(props.pageSize);
+    // eslint-disable-next-line 
     const [loading, setLoading] = useState(false);
+    // eslint-disable-next-line 
     const [totalPages, setTotalPages] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
-    //     document.title = props.category.charAt(0).toUpperCase() + props.category.slice(1) + "-NewsApp";
 
     const updateNews = async() => {
         props.setProgress(10);
@@ -30,25 +32,27 @@ const News = (props) => {
         props.setProgress(100);
     }
     
-    const handleNextClick = async () => {
-        await setPage(page + 1 );
-        updateNews();
-    }
+    // const handleNextClick = async () => {
+    //     await setPage(page + 1 );
+    //     updateNews();
+    // }
     
-    const handlePreviousClick = async () => {
-        await setPage(page - 1 );
-        updateNews();
-    }
+    // const handlePreviousClick = async () => {
+    //     await setPage(page - 1 );
+    //     updateNews();
+    // }
     
     useEffect(() => {
+        document.title = props.category.charAt(0).toUpperCase() + props.category.slice(1) + "-NewsApp";
         updateNews();
+        // eslint-disable-next-line 
     }, [])
 
     
     const fetchMoreData = async () => {
         props.setProgress(10);
+        const url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=${props.country}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${totalArticlesPerPage}`
         setPage(page + 1);
-        const url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=${props.country}&apiKey=${props.apiKey}&page=${page}&pageSize=${totalArticlesPerPage}`
         setLoading(true );
         let data = await fetch(url);
         props.setProgress(50);
@@ -62,7 +66,7 @@ const News = (props) => {
     }
         return (
             <>
-                <h1 className="text-center">Top {props.category} headlines</h1>
+                <h1 className="text-center my-3">Top {props.category} headlines</h1>
                 {/* {loading && <Spinner />} */}
                 <InfiniteScroll
                     dataLength={article.length}
