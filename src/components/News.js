@@ -79,7 +79,7 @@ const News = (props) => {
                             {/* {!loading && article.map((element) => { */}
                             { article.map((element) => {
                                 return <div className="col-md-4 my-3" key={element.url}>
-                                    <NewsItem title={element.title} desc={element.description} imageUrl={element.urlToImage} newsUrl={element.url} date={element.publishedAt} source={element.source.name} color={props.color} />
+                                    <NewsItem title={element.title} desc={element.description} imageUrl={element.urlToImage} newsUrl={element.url} date={element.publishedAt} source={element.source.name} color={props.color} mode={props.mode} />
                                 </div>
                             })}
                         </div>
@@ -89,7 +89,7 @@ const News = (props) => {
                     <button disabled={page<=1} className="btn btn-primary my-2" onClick={handlePreviousClick}>&larr;Previous</button>
                     <button disabled={page>=totalPages} className="btn btn-primary my-2" onClick={handleNextClick}>Next&rarr;</button>
                 </div> */}
-                {article.length === totalResults && <hr className="container" style={{height:"2px", width:"50%", color:"#0d6efd"}} />}
+                {article.length === totalResults && <hr className="container" style={{height:"10px", width:"50%", color:"#0d6efd"}} />}
             </>
         );
     }

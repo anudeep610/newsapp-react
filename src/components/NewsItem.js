@@ -1,10 +1,10 @@
 import React from 'react'
 
 const NewsItem = (props)=> {
-        let {title,desc,imageUrl,newsUrl,date,source,color}=props;
+        let {title,desc,imageUrl,newsUrl,date,source,color,mode}=props;
         return (
             <div className="my-3">
-                <div className={`card`}>
+                <div className={`card bg-${mode}`}>
                 <div style={{display: "flex",flexFlow:"row",position: "absolute",right:0,top:"-10px"}}>
                     <span className={`badge rounded-pill bg-${color}`}>{source}</span>
                 </div>
