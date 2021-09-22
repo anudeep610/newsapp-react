@@ -38,7 +38,7 @@ const App =()=> {
         <Navbar mode={mode} toggleMode={toggleMode}/>
         <Switch>
           <Route exact path="/"><News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={5} country="in" category="general" color="primary" mode={mode} /></Route>
-          <Route exact path="/business"><News setProgrss={setProgress} apiKey={apiKey} key="business" pageSize={5} country="in" category="business" color="secondary" mode={mode}   /></Route>
+          <Route exact path="/business"><News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={5} country="in" category="business" color="secondary" mode={mode}   /></Route>
           <Route exact path="/entertainment"><News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={5} country="in" category="entertainment" color="info" mode={mode} /></Route>
           <Route exact path="/science"><News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={5} country="in" category="science"  color="warning" mode={mode} /></Route>
           <Route exact path="/technology"><News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={5} country="in" category="technology"  color="danger" mode={mode} /></Route>
