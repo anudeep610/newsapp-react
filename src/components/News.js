@@ -73,6 +73,11 @@ const News = (props) => {
                     next={fetchMoreData}
                     hasMore={article.length !== totalResults}
                     // loader={<Spinner />}
+                    endMessage={
+                        <p className="text-center">Yay! You have seen it all
+                        Go back to top
+                        </p>
+                    }
                 >
                     <div className="container">
                         <div className="row">
@@ -89,7 +94,6 @@ const News = (props) => {
                     <button disabled={page<=1} className="btn btn-primary my-2" onClick={handlePreviousClick}>&larr;Previous</button>
                     <button disabled={page>=totalPages} className="btn btn-primary my-2" onClick={handleNextClick}>Next&rarr;</button>
                 </div> */}
-                {article.length === totalResults && <hr className="container" style={{height:"10px", width:"50%", color:"#0d6efd"}} />}
             </>
         );
     }
